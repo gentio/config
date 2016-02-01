@@ -1,0 +1,5 @@
+dns_domain_lo="homenetwork"
+config_enp8s0="dhcp"
+modlues_wlp9s0b1="!plug wpa_supplicant"
+config_wlp9s0b1="dhcp"
+wpa_supplicant_wlp9s0b1="-Dnl80211 -d -f /var/log/wpa_supplicant.log"
