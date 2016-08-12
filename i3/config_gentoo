@@ -16,7 +16,7 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font hack 7
+font pango:hack 10px
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -34,7 +34,9 @@ bindsym $mod+Return exec lxterminal
 bindsym $mod+Shift+q kill
 bindsym $mod+i exec ibus-daemon
 bindsym $mod+x exec firefox
-bindsym $mod+c exec emacs
+bindsym $mod+z exec emacs
+bindsym $mod+c exec "eclipse/eclipse"
+bindsym $mod+b exec VirtualBox
 
 exec "fcitx"
 exec "feh --bg-scale ~/.i3/123.jpg"
