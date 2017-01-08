@@ -24,10 +24,12 @@ hc keybind $Mod-Shift-q close
 #hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-Return spawn lxterminal # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-x spawn firefox  # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-z spawn emacs # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-e spawn evince # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-t spawn thunar # use your $TERMINAL with xterm as fallback
+#hc keybind $Mod-z spawn  $(SHELL export LC_CTYPE=zh_CN.UTF-8 export XMODIFIERS=@im=fcitx XIM=fcitx XIM_PROGRAM=fcitx XIM_PROGRAM=fcitx GTK_IM_MODULE=xim  emacs)
+hc keybind $Mod-z spawn emacs
+hc keybind $Mod-d spawn dmenu_run -b
+hc keybind $Mod-q spawn evince 
 
+hc keybind $Mod-m spawn R2014a/bin/matlab
 # basic movement
 # focusing clients
 hc keybind $Mod-Left  focus left
@@ -165,12 +167,10 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
 # hc detect_monitors
-
 xrandr --output HDMI1 --auto --right-of eDP1
 herbstclient set_monitors 1366x768+0+0 1920x1080+1366+0
 #fcitx
-feh --bg-tile $(ls ~/images/* | shuf -n1)
-
+feh --bg-scale $(ls ~/images/* | shuf -n1)
 
 #find the panel
 panel=~/.config/herbstluftwm/panel.sh
@@ -179,3 +179,4 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
     "$panel" $monitor &
 done
+

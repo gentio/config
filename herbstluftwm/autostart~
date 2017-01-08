@@ -24,8 +24,11 @@ hc keybind $Mod-Shift-q close
 #hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-Return spawn lxterminal # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-x spawn firefox  # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-z spawn emacs # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-z spawn  $(SHELL export LC_CTYPE=zh_CN.UTF-8 export XMODIFIERS=@im=fcitx XIM=fcitx XIM_PROGRAM=fcitx XIM_PROGRAM=fcitx GTK_IM_MODULE=xim  emacs)
+hc keybind $Mod-d spawn dmenu_run -b
+hc keybind $Mod-q spawn evince 
 
+hc keybind $Mod-m spawn R2014a/bin/matlab
 # basic movement
 # focusing clients
 hc keybind $Mod-Left  focus left
@@ -119,21 +122,22 @@ hc set frame_bg_active_color '#345F0C'
 hc set frame_border_width 1
 hc set always_show_frame 1
 hc set frame_bg_transparent 1
-hc set frame_transparent_width 5
-hc set frame_gap 4
+hc set frame_transparent_width 1
+hc set frame_gap 0
+#the border of the mintor
 
 hc attr theme.active.color '#9fbc00'
-hc attr theme.normal.color '#454545'
+hc attr theme.normal.color '#101010'
 hc attr theme.urgent.color orange
-hc attr theme.inner_width 1
+hc attr theme.inner_width 
 hc attr theme.inner_color black
-hc attr theme.border_width 3
-hc attr theme.floating.border_width 4
+hc attr theme.border_width 1
+hc attr theme.floating.border_width 1
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
 hc attr theme.active.inner_color '#3E4A00'
 hc attr theme.active.outer_color '#3E4A00'
-hc attr theme.background_color '#141414'
+hc attr theme.background_color '#ffffff'
 
 hc set window_gap 0
 hc set frame_padding 0
@@ -143,7 +147,8 @@ hc set mouse_recenter_gap 0
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
+#hc rule class=Firefox tag=2
+hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
@@ -161,15 +166,16 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
 # hc detect_monitors
-
-# find the panel
-#panel=~/.config/herbstluftwm/panel.sh
-#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
-#    # start it on each monitor
-#    "$panel" $monitor &
-#done
-xrandr --output HDMI1 --auto --right-of eDP1 
+xrandr --output HDMI1 --auto --right-of eDP1
 herbstclient set_monitors 1366x768+0+0 1920x1080+1366+0
 #fcitx
-feh --bg-tile $(ls ~/images/* | shuf -n1)
+feh --bg-scale $(ls ~/images/* | shuf -n1)
+
+#find the panel
+panel=~/.config/herbstluftwm/panel.sh
+[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    # start it on each monitor
+    "$panel" $monitor &
+done
+
